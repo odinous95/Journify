@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Journify.core\Journify.core.csproj" />
+    <ProjectReference Include="..\..\Journify.infrastructure\Journify.infrastructure.csproj" />
+    <ProjectReference Include="..\..\Journify.service\Journify.service.csproj" />
+  </ItemGroup>
+
 </Project>
