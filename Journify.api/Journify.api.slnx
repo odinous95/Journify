@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Tests/">
+    <Project Path="../Journify.api.tests/Journify.api.tests.csproj" Id="d2336d35-220a-48f8-9fcd-00d50e94af79" />
+    <Project Path="../Journify.infrastructure.tests/Journify.infrastructure.tests.csproj" Id="775d8ecd-ec0d-4cfd-b5fe-16035dc2baa1" />
+    <Project Path="../Journify.service.tests/Journify.service.tests.csproj" Id="aea24a9e-71ce-4bbb-98cb-15c2070f13af" />
+  </Folder>
+  <Project Path="../Journify.core/Journify.core.csproj" />
+  <Project Path="../Journify.infrastructure/Journify.infrastructure.csproj" />
+  <Project Path="../Journify.service/Journify.service.csproj" />
+  <Project Path="Journify.api/Journify.api.csproj" />
+</Solution>
