@@ -5,6 +5,6 @@ namespace Journify.service.Interfaces
     public interface IStepRepository
     {
         Task<IEnumerable<Step>> GetAllStepsAsync();
-        Task AddStepAsync(Step step);
+        Task<Step> AddStepAsync(Step step);
     }
 }
