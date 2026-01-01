@@ -27,5 +27,12 @@ namespace Journify.api.Controllers
             var createdStep = await _stepService.AddStepAsync(step);
             return createdStep;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Step>> GetStepById(Guid id)
+        {
+            var step = await _stepService.GetStepById(id);
+            if (step == null) return NotFound("Step not found.");
+            return Ok(step);
+        }
     }
 }

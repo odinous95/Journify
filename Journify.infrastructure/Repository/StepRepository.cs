@@ -22,5 +22,9 @@ namespace Journify.infrastructure.Repository
         {
             return await _appDbcontext.Steps.ToListAsync();
         }
+        public async Task<Step> GetStepById(Guid id)
+        {
+            return await _appDbcontext.Steps.FindAsync(id);
+        }
     }
 }
