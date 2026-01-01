@@ -1,8 +1,16 @@
+using Journify.api.Filters;
+using Journify.infrastructure.Data;
+using Journify.infrastructure.Repository;
+using Journify.service.Interfaces;
+using Journify.service.usecases;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+    options => options.Filters.Add<GloblaExceptionFilter>()
+    );
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
