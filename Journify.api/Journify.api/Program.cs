@@ -11,20 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
     );
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 // Add In-Memory Database
 builder.Services.AddInMemoryDb();
 builder.Services.AddScoped<IStepRepository, StepRepository>();
 builder.Services.AddTransient<IStepService, StepUsecase>();
 
+// Register Swagger generator (required for ISwaggerProvider)
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
