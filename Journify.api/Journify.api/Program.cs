@@ -13,8 +13,18 @@ builder.Services.AddControllers(
     );
 // Add In-Memory Database
 builder.Services.AddInMemoryDb();
+
+// Register Repositories and Services for Steps
 builder.Services.AddScoped<IStepRepository, StepRepository>();
-builder.Services.AddTransient<IStepService, StepUsecase>();
+builder.Services.AddTransient<IStepService, StepService>();
+
+// Register Repositories and Services for Users
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IUserService, UserService>();
+
+// Register Repositories and Services for Journeies
+builder.Services.AddScoped<IDailyJourneyRepository, DailyJourneyRepository>();
+builder.Services.AddTransient<IDailyJourneyService, DailyJourneyService>();
 
 // Register Swagger generator (required for ISwaggerProvider)
 builder.Services.AddSwaggerGen();
