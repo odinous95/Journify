@@ -3,6 +3,7 @@ using Journify.infrastructure.Data;
 using Journify.infrastructure.Repository;
 using Journify.service.Interfaces;
 using Journify.service.usecases;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
     );
-// Add In-Memory Database
-builder.Services.AddInMemoryDb();
+// Add Dev Database                   
+
+var useMemoryDb = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
+
+if (useMemoryDb)
+{
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseInMemoryDatabase("JournifyDb"));
+}
+else
+{
+    var connectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(connectionString));
+}
 
 // Register Repositories and Services for Steps
 builder.Services.AddScoped<IStepRepository, StepRepository>();

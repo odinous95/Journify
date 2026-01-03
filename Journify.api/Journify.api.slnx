@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/Tests/">
-    <Project Path="Journify.WebApi.Tests/Journify.WebApi.Tests.csproj" Id="65944835-6fc3-42d5-975c-599a3c3fd17f" />
-  </Folder>
-  <Project Path="../Journify.core/Journify.core.csproj" />
-  <Project Path="../Journify.infrastructure/Journify.infrastructure.csproj" />
-  <Project Path="../Journify.service/Journify.service.csproj" />
-  <Project Path="Journify.api/Journify.api.csproj" />
-</Solution>
