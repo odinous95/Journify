@@ -13,20 +13,10 @@ builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
     );
 // Add Dev Database                   
+var connectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
-var useMemoryDb = builder.Configuration.GetValue<bool>("UseInMemoryDatabase");
-
-if (useMemoryDb)
-{
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("JournifyDb"));
-}
-else
-{
-    var connectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
-    builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseNpgsql(connectionString));
-}
 
 // Register Repositories and Services for Steps
 builder.Services.AddScoped<IStepRepository, StepRepository>();
