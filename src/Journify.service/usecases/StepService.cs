@@ -23,5 +23,13 @@ namespace Journify.service.usecases
         {
             return await _stepRepository.GetStepById(id);
         }
+        public async Task<Step> UpdateStepAsync(Step step)
+        {
+            return await _stepRepository.UpdateStepAsync(step);
+        }
+        public async Task<bool> DeleteStepAsync(Guid id)
+        {
+            return await _stepRepository.DeleteStepAsync(id);
+        }
     }
 }
