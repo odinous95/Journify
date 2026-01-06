@@ -34,5 +34,19 @@ namespace Journify.api.Controllers
             if (step == null) return NotFound("Step not found.");
             return Ok(step);
         }
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Step>> UpdateStepAsync(Guid id, [FromBody] Step step)
+        {
+            if (step == null || id != step.Id) return BadRequest("Invalid step data.");
+            var updatedStep = await _stepService.UpdateStepAsync(step);
+            return Ok(updatedStep);
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteStepAsync(Guid id)
+        {
+            var result = await _stepService.DeleteStepAsync(id);
+            if (!result) return NotFound("Step not found.");
+            return NoContent();
+        }
     }
 }
