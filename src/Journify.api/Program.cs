@@ -1,3 +1,4 @@
+using DotNetEnv;
 using Journify.api.Filters;
 using Journify.infrastructure.Data;
 using Journify.infrastructure.Repository;
@@ -5,6 +6,8 @@ using Journify.service.Interfaces;
 using Journify.service.usecases;
 using Microsoft.EntityFrameworkCore;
 
+
+Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,7 +16,8 @@ builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
     );
 // Add Dev Database                   
-var connectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
+var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
+Console.WriteLine("Using Connection String: " + connectionString);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
