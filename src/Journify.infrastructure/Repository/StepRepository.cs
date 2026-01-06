@@ -26,5 +26,22 @@ namespace Journify.infrastructure.Repository
         {
             return await _appDbcontext.Steps.FindAsync(id);
         }
+        public async Task<Step> UpdateStepAsync(Step step)
+        {
+            _appDbcontext.Steps.Update(step);
+            await _appDbcontext.SaveChangesAsync();
+            return step;
+        }
+        public async Task<bool> DeleteStepAsync(Guid id)
+        {
+            var step = await _appDbcontext.Steps.FindAsync(id);
+            if (step == null)
+            {
+                return false;
+            }
+            _appDbcontext.Steps.Remove(step);
+            await _appDbcontext.SaveChangesAsync();
+            return true;
+        }
     }
 }
