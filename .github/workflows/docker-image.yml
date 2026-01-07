@@ -23,5 +23,5 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/journify:latest
+            ${{ secerts.DOCKERHUB_USERNAME }}/journify:latest
             ${{secerts.DOCKERHUB_USERNAME}}/journify:${{ github.sha }}
