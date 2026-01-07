@@ -1,5 +1,6 @@
 # -------- BUILD STAGE -------- 
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build WORKDIR /src  
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src  
 # Copy csproj files first (for Docker cache) 
 COPY src/Journify.api/Journify.api.csproj src/Journify.api/
 COPY src/Journify.service/Journify.service.csproj src/Journify.service/
