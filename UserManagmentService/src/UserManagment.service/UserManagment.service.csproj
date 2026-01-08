@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Journify.core\Journify.core.csproj" />
-    <ProjectReference Include="..\UserManagment.service\UserManagment.service.csproj" />
   </ItemGroup>
 
 </Project>
