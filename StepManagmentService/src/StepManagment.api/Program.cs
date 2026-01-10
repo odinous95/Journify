@@ -17,6 +17,7 @@ builder.Services.AddControllers(
     );
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
+
 Console.WriteLine("Using Connection String: " + connectionString);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Register Repositories and Services for Steps
 builder.Services.AddScoped<IStepRepository, StepRepository>();
 builder.Services.AddTransient<IStepService, StepService>();
+
 
 // Register Repositories and Services for Journeies
 builder.Services.AddScoped<IDailyJourneyRepository, DailyJourneyRepository>();
