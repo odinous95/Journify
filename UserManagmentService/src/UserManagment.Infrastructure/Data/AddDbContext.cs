@@ -7,8 +7,6 @@ namespace StepManagment.infrastructure.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Steps { get; set; }
-
-
+        public DbSet<User> Users { get; set; }
     }
 }
