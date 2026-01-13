@@ -1,6 +1,6 @@
 ﻿using Journify.core.Entities;
 using Microsoft.EntityFrameworkCore;
-using StepManagment.infrastructure.Data;
+using UserManagment.infrastructure.Data;
 using UserManagment.service.Interfaces;
 
 namespace UserManagment.Infrastructure.Repository

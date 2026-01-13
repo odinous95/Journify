@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace StepManagment.infrastructure.Data
+namespace UserManagment.infrastructure.Data
 {
     public static class AddDbContextFactory
     {

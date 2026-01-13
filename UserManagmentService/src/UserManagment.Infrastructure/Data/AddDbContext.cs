@@ -1,7 +1,7 @@
 ﻿using Journify.core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace StepManagment.infrastructure.Data
+namespace UserManagment.infrastructure.Data
 {
     public class AppDbContext : DbContext
     {
