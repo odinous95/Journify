@@ -1,5 +1,8 @@
 ﻿using Journify.core.Entities;
+using Microsoft.AspNetCore.Identity;
+using UserManagment.service.commands;
 using UserManagment.service.Interfaces;
+
 
 namespace UserManagment.service.usecases
 {
@@ -10,10 +13,24 @@ namespace UserManagment.service.usecases
         {
             _userRepository = userRepository;
         }
-        public async Task<User> AddUserAsync(User user)
+        public async Task<Guid> AddUserAsync(CreateUserCommand command)
         {
-            return await _userRepository.AddUserAsync(user);
+            if (string.IsNullOrWhiteSpace(command.Email))
+                throw new ArgumentException("Email is required");
+
+            if (string.IsNullOrWhiteSpace(command.Password))
+                throw new ArgumentException("Password is required");
+            User user = new();
+
+            var hashedPassword = new PasswordHasher<User>().HashPassword(user, command.Password);
+
+            user.Email = command.Email;
+            user.PasswordHash = hashedPassword;
+
+            await _userRepository.AddUserAsync(user);
+            return user.Id;
         }
+
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _userRepository.GetAllUsersAsync();

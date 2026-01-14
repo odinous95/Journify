@@ -12,19 +12,18 @@ namespace UserManagment.Infrastructure.Repository
         {
             _appDbcontext = appDbContext;
         }
+        public async Task AddUserAsync(User user)
+        {
+            _appDbcontext.Users.Add(user);
+            var result = await _appDbcontext.SaveChangesAsync();
+            Console.WriteLine(result);
+        }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _appDbcontext.Users.ToListAsync();
         }
 
-
-        public async Task<User> AddUserAsync(User user)
-        {
-            _appDbcontext.Users.Add(user);
-            await _appDbcontext.SaveChangesAsync();
-            return user;
-        }
         public async Task<User> GetUserByIdAsync(Guid id)
         {
             return await _appDbcontext.Users.FindAsync(id);

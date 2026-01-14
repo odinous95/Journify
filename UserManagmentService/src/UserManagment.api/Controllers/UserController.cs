@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserManagment.api.DTOS;
+using UserManagment.service.commands;
 using UserManagment.service.Interfaces;
 
 namespace UserManagment.api.Controllers
@@ -12,6 +14,25 @@ namespace UserManagment.api.Controllers
         {
             _userService = userService;
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult> CreateUser([FromBody] CreateUserDto request)
+        {
+            if (request == null)
+                return BadRequest("Input data is null.");
+
+            var command = new CreateUserCommand(
+                request.Email,
+                request.Password
+            );
+
+            await _userService.AddUserAsync(command);
+
+            return Ok();
+        }
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult> GetUserByIdAsync(Guid id)
         {
@@ -21,14 +42,6 @@ namespace UserManagment.api.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<ActionResult> CreateUser([FromBody] Journify.core.Entities.User user)
-        {
-            if (user == null) return BadRequest("User data is null.");
-            var createdUser = await _userService.AddUserAsync(user);
-            return Ok(createdUser);
-
-        }
         [HttpGet]
         public async Task<ActionResult> GetAllUsersAsync()
         {
