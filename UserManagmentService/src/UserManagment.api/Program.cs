@@ -18,6 +18,7 @@ builder.Services.AddControllers(
 // Register Repositories and Services for Steps
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
