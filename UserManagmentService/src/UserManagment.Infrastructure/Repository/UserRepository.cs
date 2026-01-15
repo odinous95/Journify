@@ -12,11 +12,15 @@ namespace UserManagment.Infrastructure.Repository
         {
             _appDbcontext = appDbContext;
         }
-        public async Task AddUserAsync(User user)
+        public async Task CreateUserAsync(User user)
         {
             _appDbcontext.Users.Add(user);
             var result = await _appDbcontext.SaveChangesAsync();
             Console.WriteLine(result);
+        }
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _appDbcontext.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
