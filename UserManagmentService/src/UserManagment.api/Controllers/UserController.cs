@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UserManagment.api.DTOS;
 using UserManagment.service.commands;
 using UserManagment.service.Interfaces;
@@ -45,7 +46,7 @@ namespace UserManagment.api.Controllers
         }
 
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> GetAllUsersAsync()
         {
