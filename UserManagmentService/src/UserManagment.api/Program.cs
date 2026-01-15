@@ -1,7 +1,7 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using ShareLib.SharedExtension;
 using ShareLib.SharedMiddlewares;
-using UserManagment.api.Extensions;
 using UserManagment.api.Filters;
 using UserManagment.infrastructure.Data;
 using UserManagment.Infrastructure.Repository;
@@ -16,19 +16,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
 );
-// Add authentication service
-builder.Services.AddJwtAuthentication(builder.Configuration);
-// Register Repositories and Services for Steps
+// Register Repositories and Services for User
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
 builder.Services.AddScoped<IJwtService, JwtService>();
-
+// Add authentication service
+builder.Services.AddJwtAuthentication(builder.Configuration);
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
-
 // Register Swagger generator (required for ISwaggerProvider)
 builder.Services.AddSwaggerGen();
 
