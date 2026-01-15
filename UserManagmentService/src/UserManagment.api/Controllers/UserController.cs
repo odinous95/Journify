@@ -15,6 +15,7 @@ namespace UserManagment.api.Controllers
             _userService = userService;
         }
         [HttpPost]
+        [Route("register")]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserDto request)
         {
             if (request == null)

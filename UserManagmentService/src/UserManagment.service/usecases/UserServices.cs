@@ -15,6 +15,8 @@ namespace UserManagment.service.usecases
             _userRepository = userRepository;
             _jwtService = jwtService;
         }
+
+
         public async Task<Guid> CreateUserAsync(CreateUserCommand command)
         {
             if (string.IsNullOrWhiteSpace(command.Email))
@@ -23,7 +25,6 @@ namespace UserManagment.service.usecases
             if (string.IsNullOrWhiteSpace(command.Password))
                 throw new ArgumentException("Password is required");
             User user = new();
-
             var hashedPassword = new PasswordHasher<User>().HashPassword(user, command.Password);
 
             user.Email = command.Email;
@@ -40,8 +41,7 @@ namespace UserManagment.service.usecases
             var passwordVerificationResult = new PasswordHasher<User>().VerifyHashedPassword(user, user.PasswordHash, command.Password);
             if (passwordVerificationResult == PasswordVerificationResult.Failed)
                 return null;
-            var token = _jwtService.CreateToken(user);
-            return token;
+            return _jwtService.CreateToken(user);
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()

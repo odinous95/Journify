@@ -40,7 +40,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-app.UseMiddleware<RestrictAccessMiddleware>();
+//app.UseMiddleware<RestrictAccessMiddleware>();
 app.MapControllers();
 
 app.Run();
