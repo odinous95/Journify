@@ -1,4 +1,5 @@
 ﻿using Journify.core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StepManagment.service.Interfaces;
 
@@ -13,6 +14,7 @@ namespace StepManagment.api.Controllers
         {
             _stepService = stepService;
         }
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<Step>> GetAllStepsAsync()
         {
@@ -20,6 +22,7 @@ namespace StepManagment.api.Controllers
             if (steps == null) return NotFound("No steps found.");
             return Ok(steps);
         }
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Step>> CreateStepAsync([FromBody] Step step)
         {
@@ -27,6 +30,7 @@ namespace StepManagment.api.Controllers
             var createdStep = await _stepService.AddStepAsync(step);
             return createdStep;
         }
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Step>> GetStepById(Guid id)
         {
@@ -34,6 +38,7 @@ namespace StepManagment.api.Controllers
             if (step == null) return NotFound("Step not found.");
             return Ok(step);
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<Step>> UpdateStepAsync(Guid id, [FromBody] Step step)
         {
@@ -41,6 +46,7 @@ namespace StepManagment.api.Controllers
             var updatedStep = await _stepService.UpdateStepAsync(step);
             return Ok(updatedStep);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteStepAsync(Guid id)
         {

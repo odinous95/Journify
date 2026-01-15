@@ -1,5 +1,6 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using ShareLib.SharedExtension;
 using ShareLib.SharedMiddlewares;
 using StepManagment.api.Filters;
 using StepManagment.infrastructure.Data;
@@ -31,7 +32,8 @@ builder.Services.AddTransient<IStepService, StepService>();
 // Register Repositories and Services for Journeies
 builder.Services.AddScoped<IDailyJourneyRepository, DailyJourneyRepository>();
 builder.Services.AddTransient<IDailyJourneyService, DailyJourneyService>();
-
+// Add authentication service
+builder.Services.AddJwtAuthentication(builder.Configuration);
 // Register Swagger generator (required for ISwaggerProvider)
 builder.Services.AddSwaggerGen();
 
