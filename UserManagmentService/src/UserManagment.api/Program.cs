@@ -21,7 +21,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 // Add authentication service
-builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddJwtAuthentication();
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
 // Add DbContext

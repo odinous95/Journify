@@ -33,7 +33,7 @@ builder.Services.AddTransient<IStepService, StepService>();
 builder.Services.AddScoped<IDailyJourneyRepository, DailyJourneyRepository>();
 builder.Services.AddTransient<IDailyJourneyService, DailyJourneyService>();
 // Add authentication service
-builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddJwtAuthentication();
 // Register Swagger generator (required for ISwaggerProvider)
 builder.Services.AddSwaggerGen();
 
