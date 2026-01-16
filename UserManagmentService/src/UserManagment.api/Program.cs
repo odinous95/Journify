@@ -16,11 +16,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(
     options => options.Filters.Add<GloblaExceptionFilter>()
 );
-// Register Repositories and Services for User
+// Register Repositories and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
 builder.Services.AddScoped<IJwtService, JwtService>();
-// Add authentication service
+
+// Add JWT Authentication extension method
 builder.Services.AddJwtAuthentication();
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
