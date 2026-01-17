@@ -1,4 +1,5 @@
 ﻿using Journify.core.Entities;
+using StepManagment.service.commands;
 using StepManagment.service.Interfaces;
 
 namespace StepManagment.service.usecases
@@ -10,10 +11,29 @@ namespace StepManagment.service.usecases
         {
             _journeyRepository = journeyRepository;
         }
-        public async Task<DailyJourney> CreateJourneyAsync(DailyJourney journey)
+
+
+
+
+
+
+
+        public async Task<Guid> CreateJourneyAsync(CreateJourneyCommand command)
         {
-            return await _journeyRepository.AddJourneyAsync(journey);
+            DailyJourney journey = new();
+            journey.UserId = command.UserId;
+            journey.JounreyName = command.JourneyName;
+            await _journeyRepository.AddJourneyAsync(journey);
+            return journey.Id;
         }
+
+
+
+
+
+
+
+
         public async Task<IEnumerable<DailyJourney>> GetAllJourneysAsync()
         {
             return await _journeyRepository.GetAllJourneysAsync();
