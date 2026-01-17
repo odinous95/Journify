@@ -13,6 +13,18 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "DownstreamPathTemplate": "/api/dailyjourney/create",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5210
+        }
+      ],
+      "UpstreamPathTemplate": "/dailyjourney/create",
+      "UpstreamHttpMethod": [ "post" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/step/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
