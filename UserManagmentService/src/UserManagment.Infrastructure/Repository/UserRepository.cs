@@ -15,8 +15,7 @@ namespace UserManagment.Infrastructure.Repository
         public async Task CreateUserAsync(User user)
         {
             _appDbcontext.Users.Add(user);
-            var result = await _appDbcontext.SaveChangesAsync();
-            Console.WriteLine(result);
+            await _appDbcontext.SaveChangesAsync();
         }
         public async Task<User> GetUserByEmailAsync(string email)
         {

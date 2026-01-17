@@ -31,8 +31,9 @@ namespace UserManagment.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("JournyDate")
-                        .HasColumnType("date");
+                    b.Property<string>("JounreyName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -109,13 +110,11 @@ namespace UserManagment.Infrastructure.Migrations
 
             modelBuilder.Entity("Journify.core.Entities.DailyJourney", b =>
                 {
-                    b.HasOne("Journify.core.Entities.User", "User")
+                    b.HasOne("Journify.core.Entities.User", null)
                         .WithMany("Journeys")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Journify.core.Entities.Step", b =>

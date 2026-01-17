@@ -12,8 +12,8 @@ using UserManagment.infrastructure.Data;
 namespace UserManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260113220448_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260117115124_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,8 +34,9 @@ namespace UserManagment.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("JournyDate")
-                        .HasColumnType("date");
+                    b.Property<string>("JounreyName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -97,6 +98,10 @@ namespace UserManagment.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("text");
@@ -108,13 +113,11 @@ namespace UserManagment.Infrastructure.Migrations
 
             modelBuilder.Entity("Journify.core.Entities.DailyJourney", b =>
                 {
-                    b.HasOne("Journify.core.Entities.User", "User")
+                    b.HasOne("Journify.core.Entities.User", null)
                         .WithMany("Journeys")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Journify.core.Entities.Step", b =>
