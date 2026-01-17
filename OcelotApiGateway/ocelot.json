@@ -1,7 +1,19 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/step",
+      "DownstreamPathTemplate": "/api/dailyjourney",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5210
+        }
+      ],
+      "UpstreamPathTemplate": "/dailyjourney",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/step/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
