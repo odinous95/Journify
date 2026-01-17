@@ -1,0 +1,28 @@
+version: '3'
+
+tasks:
+  migrate-step:
+    desc: Apply DB migrations for StepManagment
+    cmds:
+      - dotnet ef database update ${migrationName:-} --project StepManagmentService/src/StepManagment.infrastructure --startup-project StepManagmentService/src/StepManagment.api
+
+  migrate-user:
+    desc: Apply DB migrations for UserManagment
+    cmds:
+      - dotnet ef database update ${migrationName:-} --project UserManagmentService/src/UserManagment.infrastructure --startup-project UserManagmentService/src/UserManagment.api
+
+  migrate-all:
+    desc: Apply DB migrations for all services
+    deps:
+      - migrate-step
+      - migrate-user
+
+  add-step-migration:
+    desc: Create migration for StepManagment
+    cmds:
+      - dotnet ef migrations add ${migrationName:-init} --project StepManagmentService/src/StepManagment.infrastructure --startup-project StepManagmentService/src/StepManagment.api
+
+  add-user-migration:
+    desc: Create migration for UserManagment
+    cmds:
+      - dotnet ef migrations add ${migrationName:-init} --project UserManagmentService/src/UserManagment.infrastructure --startup-project UserManagmentService/src/UserManagment.api
