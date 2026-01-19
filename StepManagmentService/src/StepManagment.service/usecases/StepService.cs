@@ -1,4 +1,5 @@
 ﻿using Journify.core.Entities;
+using StepManagment.service.commands;
 using StepManagment.service.Interfaces;
 
 namespace StepManagment.service.usecases
@@ -10,10 +11,22 @@ namespace StepManagment.service.usecases
         {
             _stepRepository = stepRepository;
         }
-        public async Task<Step> AddStepAsync(Step step)
+
+
+
+
+        public async Task AddStepAsync(CreateStepCommand command)
         {
-            return await _stepRepository.AddStepAsync(step);
+            Step step = new();
+            step.Title = command.Title;
+            step.Description = command.Description;
+            await _stepRepository.AddStepAsync(step);
         }
+
+
+
+
+
 
         public async Task<IEnumerable<Step>> GetAllStepsAsync()
         {

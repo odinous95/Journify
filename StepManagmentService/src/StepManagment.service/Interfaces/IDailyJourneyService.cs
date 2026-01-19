@@ -5,13 +5,12 @@ namespace StepManagment.service.Interfaces
 {
     public interface IDailyJourneyService
     {
-        Task<Guid> CreateJourneyAsync(CreateJourneyCommand command);
-
-
+        Task CreateJourneyAsync(CreateJourneyCommand command);
+        Task<DailyJourney> UpdateJourneyAsync(UpdateJourneyCommand journey);
         //-===-------------------------------------------
         Task<IEnumerable<DailyJourney>> GetAllJourneysAsync();
         Task<DailyJourney> GetJourneyByIdAsync(Guid id);
-        Task<DailyJourney> UpdateJourneyAsync(DailyJourney journey);
+
         Task<bool> DeleteJourneyAsync(Guid id);
     }
 }

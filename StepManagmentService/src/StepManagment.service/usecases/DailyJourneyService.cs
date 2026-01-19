@@ -14,20 +14,23 @@ namespace StepManagment.service.usecases
 
 
 
-
-
-
-
-        public async Task<Guid> CreateJourneyAsync(CreateJourneyCommand command)
+        public async Task CreateJourneyAsync(CreateJourneyCommand command)
         {
             DailyJourney journey = new();
-            journey.UserId = command.UserId;
             journey.JounreyName = command.JourneyName;
             await _journeyRepository.AddJourneyAsync(journey);
-            return journey.Id;
         }
 
 
+
+
+        public async Task<DailyJourney> UpdateJourneyAsync(UpdateJourneyCommand command)
+        {
+            DailyJourney journey = new();
+            journey.Id = command.JourneyId;
+            journey.JounreyName = command.JourneyName;
+            return await _journeyRepository.UpdateJourneyAsync(journey);
+        }
 
 
 
@@ -42,13 +45,12 @@ namespace StepManagment.service.usecases
         {
             return await _journeyRepository.GetJourneyById(id);
         }
-        public async Task<DailyJourney> UpdateJourneyAsync(DailyJourney journey)
-        {
-            return await _journeyRepository.UpdateJourneyAsync(journey);
-        }
+
         public async Task<bool> DeleteJourneyAsync(Guid id)
         {
             return await _journeyRepository.DeleteJourneyAsync(id);
         }
+
+
     }
 }

@@ -4,8 +4,11 @@ namespace StepManagment.service.Interfaces
 {
     public interface IStepRepository
     {
+        Task AddStepAsync(Step step);
+
+
+
         Task<IEnumerable<Step>> GetAllStepsAsync();
-        Task<Step> AddStepAsync(Step step);
         Task<Step> GetStepById(Guid id);
         Task<Step> UpdateStepAsync(Step step);
         Task<bool> DeleteStepAsync(Guid id);
