@@ -6,9 +6,6 @@ namespace StepManagment.service.Interfaces
     {
         Task AddJourneyAsync(DailyJourney journey);
         Task<DailyJourney> UpdateJourneyAsync(DailyJourney journey);
-
-
-        //-===-------------------------------------------
         Task<IEnumerable<DailyJourney>> GetAllJourneysAsync();
         Task<DailyJourney> GetJourneyById(Guid id);
 
