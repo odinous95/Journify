@@ -6,14 +6,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot(builder.Configuration);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+builder.Services.AddControllers();
+
 builder.Logging.AddConsole();
 
+
+
 var app = builder.Build();
+
+
 
 
 app.MapGet("/", () => "Hello World from Ocelot Api gateway!");
 app.MapControllers();
 app.UseMiddleware<InterceptMiddleware>();
+app.UseCors("AllowFrontend");
 await app.UseOcelot();
 
 app.Run();
