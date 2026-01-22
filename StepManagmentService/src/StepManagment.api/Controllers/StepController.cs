@@ -7,8 +7,8 @@ using StepManagment.service.Interfaces;
 
 namespace StepManagment.api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/step")]
     public class StepController : ControllerBase
     {
         private readonly IStepService _stepService;
@@ -18,12 +18,13 @@ namespace StepManagment.api.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
+        [Route("create")]
         public async Task<ActionResult<Step>> CreateStepAsync([FromBody] CreateStepDTO dto)
         {
             if (dto == null) return BadRequest("Data is null.");
-            var command = new CreateStepCommand(dto.Title, dto.Description);
+            var command = new CreateStepCommand(dto.Title, dto.Description, dto.JourneyId);
             await _stepService.AddStepAsync(command);
             return Ok();
         }
@@ -42,7 +43,7 @@ namespace StepManagment.api.Controllers
 
 
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<ActionResult<Step>> GetAllStepsAsync()
         {

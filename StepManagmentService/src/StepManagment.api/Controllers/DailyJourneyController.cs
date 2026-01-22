@@ -17,7 +17,7 @@ namespace StepManagment.api.Controllers
             _dailyJourneyUsecase = dailyJourneyUsecase;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost()]
         [Route("create")]
         public async Task<ActionResult<CreateJourneyDTO>> CreateJourney([FromBody] CreateJourneyDTO dto)
@@ -43,7 +43,7 @@ namespace StepManagment.api.Controllers
 
 
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DailyJourney>>> GetAllJourneysAsync()
         {
