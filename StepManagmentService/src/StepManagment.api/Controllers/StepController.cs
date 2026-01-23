@@ -24,7 +24,7 @@ namespace StepManagment.api.Controllers
         public async Task<ActionResult<Step>> CreateStepAsync([FromBody] CreateStepDTO dto)
         {
             if (dto == null) return BadRequest("Data is null.");
-            var command = new CreateStepCommand(dto.Title, dto.Description, dto.JourneyId);
+            var command = new CreateStepCommand(dto.JourneyId, dto.Title, dto.Description);
             await _stepService.AddStepAsync(command);
             return Ok();
         }
