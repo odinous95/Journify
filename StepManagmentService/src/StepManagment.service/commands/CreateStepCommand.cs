@@ -6,7 +6,7 @@ namespace StepManagment.service.commands
         public string Title { get; set; }
         public string Description { get; set; }
         public Guid JourneyId { get; set; }
-        public CreateStepCommand(string title, string description, Guid journeyId)
+        public CreateStepCommand(Guid journeyId, string title, string description)
         {
             Title = title;
             Description = description;

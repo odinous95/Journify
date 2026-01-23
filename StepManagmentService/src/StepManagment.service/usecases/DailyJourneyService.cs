@@ -17,7 +17,7 @@ namespace StepManagment.service.usecases
         public async Task CreateJourneyAsync(CreateJourneyCommand command)
         {
             DailyJourney journey = new();
-            journey.JounreyName = command.JourneyName;
+            journey.JourneyName = command.JourneyName;
             await _journeyRepository.AddJourneyAsync(journey);
         }
 
@@ -32,15 +32,9 @@ namespace StepManagment.service.usecases
                 throw new KeyNotFoundException($"Journey with ID {command.JourneyId} was not found.");
             }
 
-            existingJourney.JounreyName = command.JourneyName;
+            existingJourney.JourneyName = command.JourneyName;
             return await _journeyRepository.UpdateJourneyAsync(existingJourney);
         }
-
-
-
-
-
-
         public async Task<IEnumerable<DailyJourney>> GetAllJourneysAsync()
         {
             return await _journeyRepository.GetAllJourneysAsync();
