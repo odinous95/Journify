@@ -4,8 +4,8 @@
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid UserId { get; set; }
-        public string JounreyName { get; set; } = string.Empty;
+        public string JourneyName { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<Step> Entries { get; set; } = new List<Step>();
+        public ICollection<Step> Steps { get; set; } = new List<Step>();
     }
 }
