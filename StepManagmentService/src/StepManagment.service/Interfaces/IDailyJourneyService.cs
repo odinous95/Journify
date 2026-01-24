@@ -9,6 +9,6 @@ namespace StepManagment.service.Interfaces
         Task<DailyJourney> UpdateJourneyAsync(UpdateJourneyCommand journey);
         Task<IEnumerable<DailyJourney>> GetAllJourneysAsync();
         Task<DailyJourney> GetJourneyByIdAsync(Guid id);
-        Task<bool> DeleteJourneyAsync(Guid id);
+        Task DeleteJourneyAsync(Guid id);
     }
 }

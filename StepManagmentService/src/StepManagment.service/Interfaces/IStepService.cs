@@ -9,6 +9,6 @@ namespace StepManagment.service.Interfaces
         Task<Step> UpdateStepAsync(UpdateStepCommand command);
         Task<IEnumerable<Step>> GetAllStepsAsync();
         Task<Step> GetStepById(Guid id);
-        Task<bool> DeleteStepAsync(Guid id);
+        Task DeleteStepAsync(Guid id);
     }
 }
