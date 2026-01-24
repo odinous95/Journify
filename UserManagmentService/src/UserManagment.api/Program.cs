@@ -2,7 +2,7 @@ using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ShareLib.SharedExtension;
 using ShareLib.SharedMiddlewares;
-using UserManagment.api.Filters;
+using UserManagment.api.Middlewares;
 using UserManagment.infrastructure.Data;
 using UserManagment.Infrastructure.Repository;
 using UserManagment.service.Interfaces;
@@ -13,9 +13,6 @@ Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers(
-    options => options.Filters.Add<GloblaExceptionFilter>()
-);
 // Register Repositories and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
@@ -40,7 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
 }
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthorization();
 app.UseMiddleware<RestrictAccessMiddleware>();
 app.MapControllers();
