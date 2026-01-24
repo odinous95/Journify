@@ -2,7 +2,7 @@ using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ShareLib.SharedExtension;
 using ShareLib.SharedMiddlewares;
-using StepManagment.api.Filters;
+using StepManagment.api.Middlewares;
 using StepManagment.infrastructure.Data;
 using StepManagment.infrastructure.Repository;
 using StepManagment.service.Interfaces;
@@ -14,9 +14,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(
-    options => options.Filters.Add<GloblaExceptionFilter>()
-    );
 // Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
 
@@ -32,6 +29,9 @@ builder.Services.AddTransient<IStepService, StepService>();
 // Register Repositories and Services for Journeies
 builder.Services.AddScoped<IDailyJourneyRepository, DailyJourneyRepository>();
 builder.Services.AddTransient<IDailyJourneyService, DailyJourneyService>();
+
+
+
 // Add authentication service
 builder.Services.AddJwtAuthentication();
 // Register Swagger generator (required for ISwaggerProvider)
@@ -46,11 +46,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// middlewares 
+// global exception handling middleware
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
-
+// authentication & authorization middlewares
 app.UseAuthorization();
+// custom middleware to restrict access based on criteria(api gateway)
 app.UseMiddleware<RestrictAccessMiddleware>();
+
 app.MapControllers();
 
 app.Run();
