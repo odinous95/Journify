@@ -26,3 +26,7 @@ tasks:
     desc: Create migration for UserManagment
     cmds:
       - dotnet ef migrations add ${migrationName:-init} --project UserManagmentService/src/UserManagment.infrastructure --startup-project UserManagmentService/src/UserManagment.api
+  run-step:
+    desc: "Run Journify StepManagmentService container"
+    cmds:
+      - docker run -d -p 8080:8080 --name journify_step_test kuber/journify-step:latest
