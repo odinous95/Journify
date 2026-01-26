@@ -6,7 +6,6 @@ using StepManagment.service.Interfaces;
 
 namespace StepManagment.api.Controllers
 {
-
     [ApiController]
     [Route("api/dailyjourney")]
     public class DailyJourneyController : ControllerBase
@@ -17,7 +16,7 @@ namespace StepManagment.api.Controllers
         {
             _dailyJourneyUsecase = dailyJourneyUsecase;
         }
-        [AllowAnonymous]
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateJourney([FromBody] CreateJourneyDTO dto)
         {

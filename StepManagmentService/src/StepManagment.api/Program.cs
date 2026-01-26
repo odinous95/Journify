@@ -1,6 +1,7 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ShareLib.SharedExtension;
+using ShareLib.SharedMiddlewares;
 using StepManagment.api.Middlewares;
 using StepManagment.infrastructure.Data;
 using StepManagment.infrastructure.Repository;
@@ -52,8 +53,8 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 // authentication & authorization middlewares
 app.UseAuthorization();
-//// custom middleware to restrict access based on criteria(api gateway)
-//app.UseMiddleware<RestrictAccessMiddleware>();
+// custom middleware to restrict access based on criteria(api gateway)
+app.UseMiddleware<RestrictAccessMiddleware>();
 
 app.MapControllers();
 
