@@ -28,11 +28,18 @@ tasks:
       - dotnet ef migrations add ${migrationName:-init} --project UserManagmentService/src/UserManagment.infrastructure --startup-project UserManagmentService/src/UserManagment.api
 
   run-step:
-    desc: "Run Journify StepManagmentService container"
+    desc: "Build and run Journify StepManagmentService container"
     cmds:
+      - docker build -t kuber/journify-step:latest -f StepManagmentService/Dockerfile .
       - docker run -d -p 8080:8080 --name journify_step_test kuber/journify-step:latest
 
   run-user:
-    desc: "Run Journify UserManagmentService container"
+    desc: "Build and run Journify UserManagmentService container"
     cmds:
+      - docker build -t kuber/journify-user:latest -f UserManagmentService/Dockerfile .
       - docker run -d -p 8081:8081 --name journify_user_test kuber/journify-user:latest
+  run-api:
+    desc: "Build and run Journify API Gateway container"
+    cmds:
+      - docker build -t kuber/journify-apigateway:latest -f OcelotApiGateway/Dockerfile .
+      - docker run -d -p 8082:8082 --name journify_api_test kuber/journify-apigateway:latest
