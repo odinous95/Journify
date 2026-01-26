@@ -5,8 +5,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "step-service",
-          "Port": 5210
+          "Host": "stepmanagment-api",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/dailyjourney",
@@ -17,8 +17,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "step-service",
-          "Port": 5210
+          "Host": "stepmanagment-api",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/dailyjourney/create",
@@ -29,8 +29,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "step-service",
-          "Port": 5210
+          "Host": "stepmanagment-api",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/step",
@@ -41,8 +41,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "step-service",
-          "Port": 5210
+          "Host": "stepmanagment-api",
+          "Port": 8080
         }
       ],
       "UpstreamPathTemplate": "/step/create",

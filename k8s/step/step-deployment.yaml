@@ -16,4 +16,4 @@ spec:
       - name: step
         image: levantisk/journify-step:latest
         ports:
-        - containerPort: 5210
+        - containerPort: 8080
