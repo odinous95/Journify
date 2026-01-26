@@ -5,8 +5,8 @@
     <File Path="k8s/gateway/gateway-service.yaml" />
   </Folder>
   <Folder Name="/k8s/step/">
-    <File Path="k8s/step/ocelot-config.yaml" />
-    <File Path="k8s/step/step-deployement.yaml" />
+    <File Path="k8s/step/step-deployment.yaml" />
+    <File Path="k8s/step/step-service.yaml" />
   </Folder>
   <Folder Name="/k8s/user/">
     <File Path="k8s/user/user-deployment.yaml" />
