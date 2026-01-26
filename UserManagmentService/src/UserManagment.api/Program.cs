@@ -1,6 +1,7 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ShareLib.SharedExtension;
+using ShareLib.SharedMiddlewares;
 using UserManagment.api.Middlewares;
 using UserManagment.infrastructure.Data;
 using UserManagment.infrastructure.Repository;
@@ -44,6 +45,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseMiddleware<RestrictAccessMiddleware>();
 app.MapControllers();
 
 app.Run();

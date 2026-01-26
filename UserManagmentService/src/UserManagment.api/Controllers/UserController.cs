@@ -15,7 +15,6 @@ namespace UserManagment.api.Controllers
         {
             _userService = userService;
         }
-        [AllowAnonymous]
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserDto request)
@@ -30,7 +29,6 @@ namespace UserManagment.api.Controllers
             var result = await _userService.CreateUserAsync(command);
             return Ok(result);
         }
-        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult> LoginUser([FromBody] LoginUserDto request)
