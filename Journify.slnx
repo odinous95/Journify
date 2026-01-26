@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Taskfile.yml" />
+  </Folder>
+
+  <Folder Name="/StepManagmentService/">
+    <Project Path="StepManagmentService/src/StepManagment.api/StepManagment.api.csproj" />
+    <Project Path="StepManagmentService/src/StepManagment.service/StepManagment.service.csproj" />
+    <Project Path="StepManagmentService/src/StepManagment.infrastructure/StepManagment.infrastructure.csproj" />
+  </Folder>
+
+  <Folder Name="/UserManagmentService/">
+    <Project Path="UserManagmentService/src/UserManagment.api/UserManagment.api.csproj" />
+    <Project Path="UserManagmentService/src/UserManagment.service/UserManagment.service.csproj" />
+    <Project Path="UserManagmentService/src/UserManagment.infrastructure/UserManagment.infrastructure.csproj" />
+  </Folder>
+
+  <Project Path="Journify.core/Journify.core.csproj" />
+  <Project Path="OcelotApiGateway/OcelotApiGateway.csproj" />
+  <Project Path="ShareLib/ShareLib.csproj" />
+</Solution>
