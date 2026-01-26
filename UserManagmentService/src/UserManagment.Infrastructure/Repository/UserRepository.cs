@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using UserManagment.infrastructure.Data;
 using UserManagment.service.Interfaces;
 
-namespace UserManagment.Infrastructure.Repository
+namespace UserManagment.infrastructure.Repository
 {
     public class UserRepository : IUserRepository
     {

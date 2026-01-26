@@ -4,7 +4,7 @@ using ShareLib.SharedExtension;
 using ShareLib.SharedMiddlewares;
 using UserManagment.api.Middlewares;
 using UserManagment.infrastructure.Data;
-using UserManagment.Infrastructure.Repository;
+using UserManagment.infrastructure.Repository;
 using UserManagment.service.Interfaces;
 using UserManagment.service.usecases;
 

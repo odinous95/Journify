@@ -9,7 +9,7 @@
   </Folder>
   <Folder Name="/UserManagmentService/">
     <Project Path="UserManagmentService/src/UserManagment.api/UserManagment.api.csproj" />
-    <Project Path="UserManagmentService/src/UserManagment.Infrastructure/UserManagment.Infrastructure.csproj" />
+    <Project Path="UserManagmentService/src/UserManagment.Infrastructure/UserManagment.Infrastructure.csproj" DisplayName="UserManagment.infrastructure" />
     <Project Path="UserManagmentService/src/UserManagment.service/UserManagment.service.csproj" />
   </Folder>
   <Project Path="Journify.core/Journify.core.csproj" />
