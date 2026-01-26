@@ -5,8 +5,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_step_test",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5210
         }
       ],
       "UpstreamPathTemplate": "/dailyjourney",
@@ -17,20 +17,20 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_step_test",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5210
         }
       ],
       "UpstreamPathTemplate": "/dailyjourney/create",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "post" ]
     },
     {
       "DownstreamPathTemplate": "/api/step",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_step_test",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5210
         }
       ],
       "UpstreamPathTemplate": "/step",
@@ -41,20 +41,22 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_step_test",
-          "Port": 8080
+          "Host": "localhost",
+          "Port": 5210
         }
       ],
       "UpstreamPathTemplate": "/step/create",
       "UpstreamHttpMethod": [ "POST" ]
     },
+
+
     {
       "DownstreamPathTemplate": "/api/user/register",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_user_test",
-          "Port": 8081
+          "Host": "localhost",
+          "Port": 5295
         }
       ],
       "UpstreamPathTemplate": "/user/register",
@@ -65,8 +67,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_user_test",
-          "Port": 8081
+          "Host": "localhost",
+          "Port": 5295
         }
       ],
       "UpstreamPathTemplate": "/user/login",
@@ -77,8 +79,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "journify_user_test",
-          "Port": 8081
+          "Host": "localhost",
+          "Port": 5295
         }
       ],
       "UpstreamPathTemplate": "/user/{everything}",
