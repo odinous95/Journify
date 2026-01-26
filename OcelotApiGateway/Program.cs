@@ -8,11 +8,11 @@ builder.Services.AddOcelot(builder.Configuration);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
+    options.AddPolicy("AllowAll",
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:3000")
+                .WithOrigins()
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -32,7 +32,8 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World from Ocelot Api gateway!");
 app.MapControllers();
 app.UseMiddleware<InterceptMiddleware>();
-app.UseCors("AllowFrontend");
+app.UseCors("AllowAll");
+
 await app.UseOcelot();
 
 app.Run();
