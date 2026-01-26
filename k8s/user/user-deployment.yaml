@@ -16,4 +16,4 @@ spec:
       - name: user
         image: levantisk/journify-user:latest
         ports:
-        - containerPort: 5295
+        - containerPort: 8081
