@@ -17,3 +17,10 @@ spec:
         image: levantisk/journify-step:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: PostgreSqlConnection
+          valueFrom:
+            secretKeyRef:
+              name: user-db-secret
+              key: PostgreSqlConnection
+
