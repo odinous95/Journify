@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stepmanagment-api",
+          "Host": "journey-service",
           "Port": 8080
         }
       ],
@@ -17,7 +17,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stepmanagment-api",
+          "Host": "journey-service",
           "Port": 8080
         }
       ],
@@ -29,7 +29,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stepmanagment-api",
+          "Host": "journey-service",
           "Port": 8080
         }
       ],
@@ -41,7 +41,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "stepmanagment-api",
+          "Host": "journey-service",
           "Port": 8080
         }
       ],
