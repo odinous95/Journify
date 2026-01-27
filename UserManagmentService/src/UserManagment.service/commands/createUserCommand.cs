@@ -1,14 +1,18 @@
 ﻿namespace UserManagment.service.commands
 {
-    public class CreateUserCommand
+    public class UserCommand
     {
+        public string ExternalIdentifyProvider { get; }
         public string Email { get; }
-        public string Password { get; }
+        public string Username { get; }
+        public string Role { get; set; } = "User";
 
-        public CreateUserCommand(string email, string password)
+        public UserCommand(string externalIdentifyProvider, string email, string username, string role)
         {
+            ExternalIdentifyProvider = externalIdentifyProvider;
             Email = email;
-            Password = password;
+            Username = username;
+            Role = role;
         }
     }
 
