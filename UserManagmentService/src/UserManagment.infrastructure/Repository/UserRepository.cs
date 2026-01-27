@@ -12,22 +12,33 @@ namespace UserManagment.infrastructure.Repository
         {
             _appDbcontext = appDbContext;
         }
-        public async Task CreateUserAsync(User user)
+
+        public async Task<User?> GetUserByExternalIdAsync(string externalAuthId)
+        {
+            return await _appDbcontext.Users
+                .FirstOrDefaultAsync(u => u.ExternalIdentifyProvider == externalAuthId);
+        }
+
+
+
+
+        public async Task<User> CreateUserAsync(User user)
         {
             _appDbcontext.Users.Add(user);
             await _appDbcontext.SaveChangesAsync();
+            return user;
         }
-        public async Task<User> GetUserByEmailAsync(string email)
-        {
-            return await _appDbcontext.Users.FirstOrDefaultAsync(u => u.Email == email);
-        }
+
+
+
+
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
             return await _appDbcontext.Users.ToListAsync();
         }
 
-        public async Task<User> GetUserByIdAsync(Guid id)
+        public async Task<User?> GetUserByIdAsync(Guid id)
         {
             return await _appDbcontext.Users.FindAsync(id);
         }
@@ -37,12 +48,6 @@ namespace UserManagment.infrastructure.Repository
             _appDbcontext.Users.Update(user);
             await _appDbcontext.SaveChangesAsync();
             return user;
-        }
-
-        public Task<bool> DeleteUserAsync(Guid id)
-        {
-            _appDbcontext.Users.Remove(new User { Id = id });
-            return _appDbcontext.SaveChangesAsync().ContinueWith(task => task.Result > 0);
         }
 
 
