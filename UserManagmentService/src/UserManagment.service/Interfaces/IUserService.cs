@@ -5,7 +5,7 @@ namespace UserManagment.service.Interfaces
 {
     public interface IUserService
     {
-        Task<User> GetUserProfileOrCreateAsync(UserCommand command);
+        Task<Guid> CreateUser(ProvisionUserCommand command);
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(Guid id);
     }
