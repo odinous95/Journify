@@ -2,30 +2,22 @@
 using UserManagment.service.commands;
 using UserManagment.service.Interfaces;
 
-
 namespace UserManagment.service.usecases
 {
-    public class UserServices : IUserService
+    public class UserServices(IUserRepository userRepository) : IUserService
     {
-        private readonly IUserRepository _userRepository;
-        public UserServices(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
 
-
-        public async Task<User> GetUserProfileOrCreateAsync(UserCommand command)
+        public async Task<Guid> CreateUser(ProvisionUserCommand command)
         {
-            var user = await _userRepository.GetUserByExternalIdAsync(command.ExternalIdentifyProvider);
-            if (user != null)
-                return user;
-            var newUser = new User(
-                command.ExternalIdentifyProvider,
-                command.Username,
-                command.Email
-            );
-            await _userRepository.CreateUserAsync(newUser);
-            return newUser;
+            if (string.IsNullOrWhiteSpace(command.AuthSub))
+                throw new ArgumentException("AuthSub is required");
+            if (string.IsNullOrWhiteSpace(command.Email))
+                throw new ArgumentException("Email is required");
+            if (string.IsNullOrWhiteSpace(command.Username))
+                throw new ArgumentException("Username is required");
+            User user = User.Create(command.AuthSub, command.Username, command.Email, command.EmailVerified);
+            return await _userRepository.CreateUserAsync(user);
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
@@ -34,9 +26,8 @@ namespace UserManagment.service.usecases
         }
         public async Task<User> GetUserByIdAsync(Guid id)
         {
-            return await _userRepository.GetUserByIdAsync(id);
+            return await _userRepository.GetUserByIdAsync(id)
+                ?? throw new KeyNotFoundException($"User with id {id} not found.");
         }
-
-
     }
 }
