@@ -12,18 +12,14 @@ using UserManagment.service.usecases;
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-// Add services to the container.
-// Register Repositories and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
 builder.Services.AddScoped<IAuthenticatedUserProvider, JwtAuthenticatedUserProvider>();
 builder.Services.AddJwtAuthentication();
 builder.Services.AddHttpContextAccessor();
 
-// Add Dev Database                   
 var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -32,13 +28,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//-=-=-=-=-=-=-=-=-=-==-=--==--=-==-=-=-=-=--==-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
 app.UseMiddleware<ExceptionMiddleware>();
 
