@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace ShareLib.SharedExtension;
 
@@ -13,23 +11,15 @@ public static class JwtExtensions
         public IServiceCollection AddJwtAuthentication()
         {
             var config = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new()
-                    {
-                        ValidateIssuer = true,
-                        ValidIssuer = config["Jwt:Issuer"],
-                        ValidateAudience = true,
-                        ValidAudience = config["Jwt:Audience"],
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(config["Jwt:Key"]!)
-                        ),
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://dev-i3fy5nyaqj55t6uh.us.auth0.com/";
+                options.Audience = "http://localhost:5295";
+            });
 
             return services;
         }
