@@ -17,8 +17,8 @@ public static class JwtExtensions
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://dev-i3fy5nyaqj55t6uh.us.auth0.com/";
-                options.Audience = "http://localhost:5295";
+                options.Authority = config["Auth0:Domain"];
+                options.Audience = config["Auth0:Audience"];
             });
 
             return services;
