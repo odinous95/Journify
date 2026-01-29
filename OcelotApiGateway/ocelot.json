@@ -75,5 +75,9 @@
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://api-gateway:8082"
+  },
+  "AuthenticationOptions": {
+    "AuthenticationProviderKey": "Bearer",
+    "AllowedScopes": []
   }
 }
