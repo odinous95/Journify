@@ -1,6 +1,7 @@
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using ShareLib.SharedExtension;
+using ShareLib.SharedMiddlewares;
 using UserManagment.api.Middlewares;
 using UserManagment.infrastructure.Data;
 using UserManagment.infrastructure.Repository;
@@ -11,19 +12,24 @@ using UserManagment.service.usecases;
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthorization();
+var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
+// Add services to the container.
 builder.Services.AddControllers();
+
+// Register Repositories and Services for Users
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserServices>();
-builder.Services.AddJwtAuthentication();
-builder.Services.AddHttpContextAccessor();
 
-var connectionString = Environment.GetEnvironmentVariable("PostgreSqlConnection");
-// Add DbContext
+// Add authentication service and authorization
+builder.Services.AddJwtAuthentication();
+builder.Services.AddAuthorization();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSwaggerGen();
+// db
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 // Register Swagger generator (required for ISwaggerProvider)
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -34,13 +40,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseMiddleware<ExceptionMiddleware>();
 
+// middlewares
+app.UseMiddleware<ExceptionMiddleware>();
 // Ensure auth order: Authentication then Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.UseMiddleware<RestrictAccessMiddleware>();
+app.UseMiddleware<RestrictAccessMiddleware>();
 app.MapControllers();
 
 app.Run();
