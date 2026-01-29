@@ -1,0 +1,32 @@
+
+
+// Build Docker Images
+docker build -t levantisk/journify-user:latest -f UserManagmentService/Dockerfile .
+docker build -t levantisk/journify-step:latest -f StepManagmentService/Dockerfile .
+docker build -t levantisk/journify-gateway:latest -f OcelotApiGateway/Dockerfile . 
+
+
+
+// Path: Devnotes
+// Push to Docker Hub
+docker push levantisk/journify-user:latest
+docker push levantisk/journify-step:latest
+docker push levantisk/journify-gateway:latest
+
+
+
+// Deploy to Kubernetes Cluster
+kubectl rollout restart deployment api-gateway-deployment
+kubectl rollout restart deployment user-deployment
+kubectl rollout restart deployment journey-deployment
+
+
+// Or apply all k8s manifests
+kubectl apply -f k8s/ --recursive
+
+
+// Create Secret for PostgreSQL Connection String
+kubectl create secret generic user-db-secret --from-literal=PostgreSqlConnection=""
+
+// Scale Down Deployments
+ kubectl scale deployment api-gateway-deployment journey-deployment user-deployment --replicas=0
